@@ -1,8 +1,13 @@
+import sys
+import os
+from contextlib import asynccontextmanager
+
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from contextlib import asynccontextmanager
-import os
 
 from app.config import settings
 from database.connection import connect_to_mongo, close_mongo_connection
