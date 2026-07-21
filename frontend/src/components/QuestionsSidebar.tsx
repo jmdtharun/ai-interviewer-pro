@@ -37,7 +37,7 @@ export default function QuestionsSidebar({
           user_transcript: userTranscript || 'Help needed'
         }) as any
       });
-      setHint(res.evaluation || 'Focus on time complexity trade-offs and edge case constraints.');
+      setHint((res as any).hint || (res as any).evaluation || 'Focus on time complexity trade-offs and edge case constraints.');
     } catch {
       setHint('Hint: Consider using a Hash Map or Two-Pointer approach to optimize loop overhead.');
     } finally {
