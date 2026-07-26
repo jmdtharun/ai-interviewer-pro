@@ -186,6 +186,9 @@ async def submit_answer(
 @router.get("/{interview_id}")
 async def get_interview_detail(interview_id: str):
     """Retrieve full interview status, transcript turns, and scorecard."""
+    if interview_id.lower() == "setup":
+        raise HTTPException(status_code=404, detail="Route setup is a frontend page, not an interview ID.")
+
     interview = MOCK_INTERVIEWS_DB.get(interview_id)
     if not interview:
         # Fallback sample interview return for UI demonstration

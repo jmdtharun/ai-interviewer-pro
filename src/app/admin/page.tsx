@@ -1,9 +1,9 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import AnalyticsCharts from '@/components/AnalyticsCharts';
-import { getAdminAnalytics } from '@/lib/api';
-import { AdminAnalytics } from '@/types';
+import AnalyticsCharts from '../../components/AnalyticsCharts';
+import { getAdminAnalytics } from '../../lib/api';
+import { AdminAnalytics } from '../../types';
 import { Users, CheckCircle2, TrendingUp, AlertTriangle, ShieldCheck, Activity } from 'lucide-react';
 
 export default function AdminDashboardPage() {
