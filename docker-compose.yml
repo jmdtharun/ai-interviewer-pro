@@ -4,20 +4,25 @@ services:
   mongodb:
     image: mongo:6.0
     container_name: ai_interviewer_mongodb
-    restart: always
+    restart: unless-stopped
     ports:
       - "27017:27017"
     environment:
       MONGO_INITDB_DATABASE: ai_interviewer_db
     volumes:
       - mongo_data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   backend:
     build:
       context: .
       dockerfile: docker/Dockerfile.backend
     container_name: ai_interviewer_backend
-    restart: always
+    restart: unless-stopped
     ports:
       - "8000:8000"
     environment:
@@ -25,9 +30,10 @@ services:
       - DATABASE_NAME=ai_interviewer_db
       - SECRET_KEY=super-secret-key-ai-interviewer-pro-2026
       - OPENAI_API_KEY=${OPENAI_API_KEY:-}
-      - ENVIRONMENT=development
+      - ENVIRONMENT=production
     depends_on:
-      - mongodb
+      mongodb:
+        condition: service_healthy
     volumes:
       - ./reports:/app/reports
       - ./uploads:/app/uploads
@@ -37,7 +43,7 @@ services:
       context: .
       dockerfile: docker/Dockerfile.frontend
     container_name: ai_interviewer_frontend
-    restart: always
+    restart: unless-stopped
     ports:
       - "3000:3000"
     environment:
@@ -45,6 +51,18 @@ services:
       - NEXTAUTH_SECRET=super-secret-nextauth-key-2026
       - NEXTAUTH_URL=http://localhost:3000
     depends_on:
+      - backend
+
+  nginx:
+    image: nginx:alpine
+    container_name: ai_interviewer_nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - ./docker/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - frontend
       - backend
 
 volumes:

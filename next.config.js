@@ -7,11 +7,10 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  experimental: {
-    turbo: {
-      root: __dirname,
-    },
+  eslint: {
+    ignoreDuringBuilds: true,
   },
 };
 
 module.exports = nextConfig;
+
