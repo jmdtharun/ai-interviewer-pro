@@ -75,6 +75,7 @@ jobs:
           context: .
           file: docker/Dockerfile.backend
           push: false
+          no-cache: true
           tags: ai-interviewer-backend:latest
 
       - name: Audit Frontend Docker Build
@@ -83,4 +84,5 @@ jobs:
           context: .
           file: docker/Dockerfile.frontend
           push: false
+          no-cache: true
           tags: ai-interviewer-frontend:latest
