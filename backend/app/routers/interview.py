@@ -13,6 +13,7 @@ from ai_models.vision_processor import vision_engine
 from ai_models.audio_processor import audio_analyzer
 from ai_models.stt_engine import stt_service
 from app.core.scoring import ScoringEngine
+from app.config import settings
 from services.pdf_generator import pdf_service
 from services.storage_service import storage_manager
 
