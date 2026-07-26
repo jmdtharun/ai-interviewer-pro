@@ -1,9 +1,6 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
 import './globals.css';
-import Navbar from '@/components/Navbar';
-
-const inter = Inter({ subsets: ['latin'] });
+import Navbar from '../components/Navbar';
 
 export const metadata: Metadata = {
   title: 'AI Interviewer Pro — AI Placement Interview Simulation SaaS',
@@ -17,7 +14,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark">
-      <body className={inter.className}>
+      <body className="font-sans bg-dark-bg text-gray-100 antialiased">
         <Navbar />
         <main className="min-h-[calc(100vh-4rem)]">
           {children}
