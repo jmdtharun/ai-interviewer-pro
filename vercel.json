@@ -1,19 +1,5 @@
 {
   "buildCommand": "npm run build",
-  "installCommand": "npm install",
-  "framework": "nextjs",
-  "rewrites": [
-    {
-      "source": "/auth/:path*",
-      "destination": "https://ai-interviewer-pro-4pzz.onrender.com/auth/:path*"
-    },
-    {
-      "source": "/interview/:path*",
-      "destination": "https://ai-interviewer-pro-4pzz.onrender.com/interview/:path*"
-    },
-    {
-      "source": "/analytics/:path*",
-      "destination": "https://ai-interviewer-pro-4pzz.onrender.com/analytics/:path*"
-    }
-  ]
+  "installCommand": "npm install --legacy-peer-deps",
+  "framework": "nextjs"
 }
